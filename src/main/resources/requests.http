@@ -1,0 +1,23 @@
+POST http://{{host}}/api/market-order/bulk
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< ./output-Alder.csv
+--boundary--
+###
+GET http://{{host}}/api/market-order
+
+###
+
+POST http://localhost:80/api/item
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="field-name"
+
+field-value
+--WebAppBoundary--
+
+###

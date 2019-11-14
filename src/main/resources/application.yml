@@ -1,0 +1,21 @@
+server.servlet.context-path: '/api'
+
+spring:
+  datasource:
+    url: jdbc:h2:file:./data/market
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+    initialization-mode: embedded
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+        hbm2ddl:
+          delimiter: ;
