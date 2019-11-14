@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BoundlessmarketapiApplication {
+public class BoundlessMarketAPIApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BoundlessmarketapiApplication.class, args);
+        SpringApplication.run(BoundlessMarketAPIApplication.class, args);
     }
 
 }
