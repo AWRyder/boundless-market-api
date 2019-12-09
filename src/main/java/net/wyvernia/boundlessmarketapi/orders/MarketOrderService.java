@@ -1,5 +1,7 @@
 package net.wyvernia.boundlessmarketapi.orders;
 
+import net.wyvernia.boundlessmarketapi.recipes.Recipe;
+import net.wyvernia.boundlessmarketapi.recipes.RecipeRepository;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -13,7 +15,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,9 +22,11 @@ public class MarketOrderService {
     private final Logger logger = LoggerFactory.getLogger(MarketOrderService.class);
 
     private final MarketOrderRepository orderRepository;
+    private final RecipeRepository recipeRepository;
 
-    public MarketOrderService(MarketOrderRepository orderRepository) {
+    public MarketOrderService(MarketOrderRepository orderRepository, RecipeRepository recipeRepository) {
         this.orderRepository = orderRepository;
+        this.recipeRepository = recipeRepository;
     }
 
     @Transactional
@@ -62,5 +65,10 @@ public class MarketOrderService {
         }
 
         return importedRowsCounter;
+    }
+
+    public String getProfitableRecipes(){
+        Iterable<Recipe> allRecipes = recipeRepository.findAll();
+        return "ok";
     }
 }

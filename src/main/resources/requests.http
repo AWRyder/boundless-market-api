@@ -4,20 +4,222 @@ Content-Type: multipart/form-data; boundary=boundary
 --boundary
 Content-Disposition: form-data; name="data"; filename="data.csv"
 
-< ./output-Alder.csv
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Alder.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Angel I.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Arie.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Beckon.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Dzassak.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Gellis.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Imoco.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Lasaina.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Maryx.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Niia Zed Ka.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Raxxa.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Refgar.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Sochaltin I.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Sorissi.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Storis II.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Trior.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Grovidias Te.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Xa Frant.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Lamblis.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Imdaari.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Gyosha Ophin.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Gloviathosa.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Cephonex Merika.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Boori.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Delta Cancret.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Till.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Antar VI.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Eresho.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Finata.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Kada I.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Lutrion.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Minorengle.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Pheminorum.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Seginiakai.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Tana VII.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Trung.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Biitula.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Dzassak.csv
+
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
+
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Circarpous I.csv
+
 --boundary--
-###
-GET http://{{host}}/api/market-order
+######################
+POST http://{{host}}/api/market-order/bulk
+Content-Type: multipart/form-data; boundary=boundary
 
-###
+--boundary
+Content-Disposition: form-data; name="data"; filename="data.csv"
 
-POST http://localhost:80/api/item
-Content-Type: multipart/form-data; boundary=WebAppBoundary
+< C:\Users\joaof\Downloads\PriceHarvester - 1.0.0\temp\output-Circarpous I.csv
 
---WebAppBoundary
-Content-Disposition: form-data; name="field-name"
+###################### ITEMS
+POST http://{{host}}/api/item/bulk
+Content-Type: application/json
 
-field-value
---WebAppBoundary--
+< C:\Users\joaof\Downloads\BoundlessMsgPackToJson-1.0\compileditems.json
+
+
+###################### Recipes
+POST http://{{host}}/api/recipe/bulk
+Content-Type: application/json
+
+< C:\Users\joaof\Downloads\BoundlessMsgPackToJson-1.0\recipes.json
+
+##################### Profit Recipes
+GET http://{{host}}/api/market-order/profit/recipes
 
 ###

@@ -41,15 +41,23 @@ public class MarketOrderController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/bulk")
-    public ResponseEntity<Long> bulkImport(@RequestParam("data") MultipartFile dataFile){
-        try {
-            Long affectedRows = orderService.bulkImport(dataFile);
-            return ResponseEntity.ok(affectedRows);
-        } catch (Exception e) {
-            logger.warn(e.getMessage());
-            return ResponseEntity.badRequest().body(0L);
+    public ResponseEntity<Long> bulkImport(@RequestParam("data") MultipartFile[] dataFiles){
+        Long affectedTotal = 0L;
+        for (MultipartFile dataFile : dataFiles) {
+            try {
+                Long affectedRows = orderService.bulkImport(dataFile);
+                affectedTotal += affectedRows;
+            } catch (Exception e) {
+                logger.warn(e.getMessage());
+            }
         }
+        return ResponseEntity.ok(affectedTotal);
+    }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/profit/recipes")
+    public ResponseEntity getProfitableRecipes(){
+        String profitableRecipes = orderService.getProfitableRecipes();
+        return ResponseEntity.ok(profitableRecipes);
     }
 
 }
