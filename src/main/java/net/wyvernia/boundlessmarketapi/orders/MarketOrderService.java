@@ -67,8 +67,20 @@ public class MarketOrderService {
         return importedRowsCounter;
     }
 
+    @Transactional
     public String getProfitableRecipes(){
         Iterable<Recipe> allRecipes = recipeRepository.findAll();
-        return "ok";
+        StringBuilder stringBuilder = new StringBuilder();
+        allRecipes.forEach(recipe -> {
+            String name = recipe.getOutputItem().getName();
+            List<MarketOrder> orders = orderRepository.findByItemIdEqualsAndOrderTypeIs(name, MarketOrderType.BUYING);
+            if (orders.size()==0){
+                return;
+            }
+            //MarketOrder bestBuyOrder = orders.sort( order );
+            stringBuilder.append(name + ": " + orders.size()+ "\n");
+        });
+
+        return stringBuilder.toString();
     }
 }

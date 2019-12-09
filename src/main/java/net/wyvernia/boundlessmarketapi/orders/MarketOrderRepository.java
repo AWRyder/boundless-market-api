@@ -9,4 +9,5 @@ public interface MarketOrderRepository extends CrudRepository<MarketOrder, Integ
 
     List<MarketOrder> findByPlanetName(String planetName);
     void removeAllByPlanetName(String planetName);
+    List<MarketOrder> findByItemIdEqualsAndOrderTypeIs(String itemId, MarketOrderType type);
 }
