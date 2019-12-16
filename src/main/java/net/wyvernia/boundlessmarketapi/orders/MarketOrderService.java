@@ -15,7 +15,10 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MarketOrderService {
@@ -73,12 +76,44 @@ public class MarketOrderService {
         StringBuilder stringBuilder = new StringBuilder();
         allRecipes.forEach(recipe -> {
             String name = recipe.getOutputItem().getName();
-            List<MarketOrder> orders = orderRepository.findByItemIdEqualsAndOrderTypeIs(name, MarketOrderType.BUYING);
-            if (orders.size()==0){
+            List<MarketOrder> outputItemOrders = orderRepository.findByItemIdEqualsAndOrderTypeIs(name, MarketOrderType.BUYING);
+            // No one is buying the output item. Forget recipe.
+            Optional<MarketOrder> max = outputItemOrders
+                    .stream()
+                    .max(Comparator.comparingDouble(order -> order.getCost() * order.getQuantity()));
+            if (max.isEmpty()) {
                 return;
             }
-            //MarketOrder bestBuyOrder = orders.sort( order );
-            stringBuilder.append(name + ": " + orders.size()+ "\n");
+            MarketOrder bestBuyOrder = max.get();
+            List<MarketOrder> inputOrders = new ArrayList<>();
+
+            recipe.getRecipeInputs().forEach(recipeInput -> {
+                List<MarketOrder> inputItemOrders = orderRepository.findByItemIdEqualsAndOrderTypeIs(recipeInput.getInputItem().get(0).getName() , MarketOrderType.SELLING);
+                Optional<MarketOrder> bestSellOrder = inputItemOrders.stream()
+                        .filter(order -> order.getQuantity() < recipeInput.getInputQuantity().get(0))
+                        .min(Comparator.comparingDouble(order -> order.getCost() * order.getQuantity()));
+                bestSellOrder.ifPresent(inputOrders::add);
+            });
+            if (recipe.getRecipeInputs().size() != inputOrders.size()){
+                return;
+            }
+
+            // MarketOrder bestBuyOrder = orders.sort( order );
+            stringBuilder.append("\nCraft a ")
+                    .append(recipe.getOutputItem().getName())
+                    .append(" x")
+                    .append(bestBuyOrder.getQuantity())
+                    .append(" to sell for ")
+                    .append(bestBuyOrder.getCost() * bestBuyOrder.getQuantity())
+                    .append(" on ")
+                    .append(bestBuyOrder.getPlanetName())
+                    .append("@")
+                    .append(bestBuyOrder.getBeacon());
+            for (MarketOrder inputOrder : inputOrders) {
+                stringBuilder.append("\n\tBuy "+ inputOrder.getItemId() + " x??? for" + inputOrder.getCost() + " on " + inputOrder.getPlanetName() + "@" + inputOrder.getBeacon()  );
+            }
+            stringBuilder.append("\n\n\n");
+
         });
 
         return stringBuilder.toString();
