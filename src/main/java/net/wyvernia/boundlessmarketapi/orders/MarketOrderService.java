@@ -85,14 +85,14 @@ public class MarketOrderService {
                 return;
             }
             MarketOrder bestBuyOrder = max.get();
-            List<MarketOrder> inputOrders = new ArrayList<>();
+            List<MarketOrderWithRecipeDecorator> inputOrders = new ArrayList<>();
 
             recipe.getRecipeInputs().forEach(recipeInput -> {
                 List<MarketOrder> inputItemOrders = orderRepository.findByItemIdEqualsAndOrderTypeIs(recipeInput.getInputItem().get(0).getName() , MarketOrderType.SELLING);
                 Optional<MarketOrder> bestSellOrder = inputItemOrders.stream()
-                        .filter(order -> order.getQuantity() < recipeInput.getInputQuantity().get(0))
+                        .filter(order -> order.getQuantity() > recipeInput.getInputQuantity().get(0) * bestBuyOrder.getQuantity())
                         .min(Comparator.comparingDouble(order -> order.getCost() * order.getQuantity()));
-                bestSellOrder.ifPresent(inputOrders::add);
+                bestSellOrder.ifPresent(order -> inputOrders.add(new MarketOrderWithRecipeDecorator(order, recipeInput)) );
             });
             if (recipe.getRecipeInputs().size() != inputOrders.size()){
                 return;
@@ -109,9 +109,23 @@ public class MarketOrderService {
                     .append(bestBuyOrder.getPlanetName())
                     .append("@")
                     .append(bestBuyOrder.getBeacon());
-            for (MarketOrder inputOrder : inputOrders) {
-                stringBuilder.append("\n\tBuy "+ inputOrder.getItemId() + " x??? for" + inputOrder.getCost() + " on " + inputOrder.getPlanetName() + "@" + inputOrder.getBeacon()  );
+            for (MarketOrderWithRecipeDecorator inputOrder : inputOrders) {
+                stringBuilder.append("\n\tBuy ")
+                        .append(inputOrder.getOrder().getItemId())
+                        .append(" x")
+                        .append(inputOrder.getRecipe().getInputQuantity().get(0) * bestBuyOrder.getQuantity())
+                        .append(" for ")
+                        .append(inputOrder.getOrder().getCost())
+                        .append(" on ")
+                        .append(inputOrder.getOrder().getPlanetName())
+                        .append(" @ ")
+                        .append(inputOrder.getOrder().getBeacon());
             }
+            Double cost = inputOrders.stream()
+                    .map(order -> order.getOrder().getCost() * order.getRecipe().getInputQuantity().get(0) * bestBuyOrder.getQuantity())
+                    .reduce(Double::sum).get();
+            Double gain = bestBuyOrder.getQuantity() * bestBuyOrder.getCost();
+            stringBuilder.append("\n\t PROFIT: " + (gain - cost));
             stringBuilder.append("\n\n\n");
 
         });
