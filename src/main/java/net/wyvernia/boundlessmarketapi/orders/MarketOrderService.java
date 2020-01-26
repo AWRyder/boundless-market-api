@@ -71,10 +71,12 @@ public class MarketOrderService {
     }
 
     @Transactional
-    public String getProfitableRecipes(){
+    public Object getProfitableRecipes(){
         Iterable<Recipe> allRecipes = recipeRepository.findAll();
         StringBuilder stringBuilder = new StringBuilder();
+        List<ProfitableRecipe> profitableRecipes = new ArrayList<>();
         allRecipes.forEach(recipe -> {
+            System.out.println("To craft : " +recipe.getOutputItem().getName());
             String name = recipe.getOutputItem().getName();
             List<MarketOrder> outputItemOrders = orderRepository.findByItemIdEqualsAndOrderTypeIs(name, MarketOrderType.BUYING);
             // No one is buying the output item. Forget recipe.
@@ -82,6 +84,7 @@ public class MarketOrderService {
                     .stream()
                     .max(Comparator.comparingDouble(order -> order.getCost() * order.getQuantity()));
             if (max.isEmpty()) {
+                System.out.println("Left because there's no order for product.");
                 return;
             }
             MarketOrder bestBuyOrder = max.get();
@@ -95,32 +98,13 @@ public class MarketOrderService {
                 bestSellOrder.ifPresent(order -> inputOrders.add(new MarketOrderWithRecipeDecorator(order, recipeInput)) );
             });
             if (recipe.getRecipeInputs().size() != inputOrders.size()){
+                System.out.println("Left because there's not enough inputs for sale.");
                 return;
             }
 
             // MarketOrder bestBuyOrder = orders.sort( order );
-            stringBuilder.append("\nCraft a ")
-                    .append(recipe.getOutputItem().getName())
-                    .append(" x")
-                    .append(bestBuyOrder.getQuantity())
-                    .append(" to sell for ")
-                    .append(bestBuyOrder.getCost() * bestBuyOrder.getQuantity())
-                    .append(" on ")
-                    .append(bestBuyOrder.getPlanetName())
-                    .append("@")
-                    .append(bestBuyOrder.getBeacon());
-            for (MarketOrderWithRecipeDecorator inputOrder : inputOrders) {
-                stringBuilder.append("\n\tBuy ")
-                        .append(inputOrder.getOrder().getItemId())
-                        .append(" x")
-                        .append(inputOrder.getRecipe().getInputQuantity().get(0) * bestBuyOrder.getQuantity())
-                        .append(" for ")
-                        .append(inputOrder.getOrder().getCost())
-                        .append(" on ")
-                        .append(inputOrder.getOrder().getPlanetName())
-                        .append(" @ ")
-                        .append(inputOrder.getOrder().getBeacon());
-            }
+
+
             Double cost = inputOrders.stream()
                     .map(order -> order.getOrder().getCost() * order.getRecipe().getInputQuantity().get(0) * bestBuyOrder.getQuantity())
                     .reduce(Double::sum).get();
@@ -128,8 +112,17 @@ public class MarketOrderService {
             stringBuilder.append("\n\t PROFIT: " + (gain - cost));
             stringBuilder.append("\n\n\n");
 
+            if ((gain-cost) <= 0) {
+                System.out.println("Left because the profit is equal or below 0.");
+                return;
+            }
+            System.out.println("Recipe accepted.");
+            profitableRecipes.add(new ProfitableRecipe(bestBuyOrder, inputOrders, recipe, (gain-cost)));
+
         });
 
-        return stringBuilder.toString();
+        Optional<ProfitableRecipe> max = profitableRecipes.stream().max(Comparator.comparingDouble(ProfitableRecipe::getProfit));
+
+        return max;
     }
 }

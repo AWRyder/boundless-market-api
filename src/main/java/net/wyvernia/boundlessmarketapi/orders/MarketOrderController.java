@@ -56,7 +56,7 @@ public class MarketOrderController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/profit/recipes")
     public ResponseEntity getProfitableRecipes(){
-        String profitableRecipes = orderService.getProfitableRecipes();
+        Object profitableRecipes = orderService.getProfitableRecipes();
         return ResponseEntity.ok(profitableRecipes);
     }
 

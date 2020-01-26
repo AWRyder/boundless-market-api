@@ -1,7 +1,11 @@
 package net.wyvernia.boundlessmarketapi.items;
 
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Item {
@@ -11,6 +15,8 @@ public class Item {
 
     private String name;
 
+    @Transient
+    private Double averageCost;
 
     public Integer getId() {
         return id;
@@ -26,5 +32,15 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @JsonView(Item.class)
+    public Double getAverageCost() {
+        return averageCost;
+    }
+
+    @JsonSetter
+    public void setAverageCost(Double averageCost) {
+        this.averageCost = averageCost;
     }
 }
